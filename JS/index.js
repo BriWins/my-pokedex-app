@@ -1,3 +1,5 @@
+//pokemonList holds pokemon array items
+
 let pokemonList = [
     {name: "Bulbasaur", 
     height: 0.7, 
@@ -16,10 +18,21 @@ let pokemonList = [
     abilities: ["Chlorophyll", "Overgrow"]}
 ]
 
-for ( let i = 0; i < pokemonList.length; i++) {
-    if ( pokemonList[i].height > 1 ) {
-        document.write( "</p>" + pokemonList[i].name + " - that is a big ole pokemon!");
+// prints pokemonList details with message for largest pokemon
+function printPokemonArray(pokemon) {
+    if ( pokemon.height > 1 ) {
+        document.write( "</p>" + pokemon.name + " - that is a big ole pokemon!");
     } else {
-        document.write( "</p>" + pokemonList[i].name)
+        document.write( "</p>" + pokemon.name);
     }
-}
+};
+
+pokemonList.forEach(printPokemonArray);
+
+// printPokemonArray();
+
+
+
+
+
+
