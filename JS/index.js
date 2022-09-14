@@ -1,5 +1,7 @@
+// pokemonRepository is wrapped inside IIFE to prevent side effects of globalness
+let pokemonRepository = (function() {
+   
 //pokemonList holds pokemon array items
-
 let pokemonList = [
     {name: "Bulbasaur", 
     height: 0.7, 
@@ -18,18 +20,45 @@ let pokemonList = [
     abilities: ["Chlorophyll", "Overgrow"]}
 ]
 
-// prints pokemonList details with message for largest pokemon
-function printPokemonArray(pokemon) {
-    if ( pokemon.height > 1 ) {
-        document.write( "</p>" + pokemon.name + " - that is a big ole pokemon!");
+// getAll() returns list of pokemon items
+function getAll() {
+    return pokemonList;
+}
+
+// add() makes sure pokemon item is a real oject with appropriate object key properties
+function add(pokemon) {
+    if (typeof pokemon !== "object" && Object.keys(pokemon)) {
+        return "Error not a pokemon object!"
     } else {
-        document.write( "</p>" + pokemon.name);
+        return pokemonList.push(pokemon);
     }
-};
+}
 
-pokemonList.forEach(printPokemonArray);
+// filterItems() allows user to search for pokemon by name
+function filterItems(pokemonList, query) {
+    return pokemonList.filter((name) => name.toLowerCase().includes(query.toLowerCase()));
+  }
 
-// printPokemonArray();
+
+// return invokes all functions with IIFE statement
+return {
+    getAll: getAll,
+    add: add,
+    filterItems: filterItems,
+}
+})();
+
+// prints pokemonList details with message for largest pokemon
+pokemonRepository.getAll().forEach(function(item) {
+    document.write( "<br />" + "Name: " + item.name + " " + "Height: " + item.height + " " + "meters" + " "); {
+       if (item.height < 0.3 ) {
+        document.write( " ~ AWW! that is one itty bitty Pokemon!");
+      }
+      else if (item.height > 1) {
+          document.write(" ~ WHOA! that is one big 'ole Pokemon!"); 
+        }
+    }
+});
 
 
 
