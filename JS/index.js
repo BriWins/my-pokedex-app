@@ -39,7 +39,6 @@ function filterItems(pokemonList, query) {
     return pokemonList.filter((name) => name.toLowerCase().includes(query.toLowerCase()));
   }
 
-
 // return invokes all functions with IIFE statement
 return {
     getAll: getAll,
