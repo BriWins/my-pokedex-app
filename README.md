@@ -13,3 +13,19 @@
 ## Context
 
 This project was my very first dabble into full-stack development. The primary purpose was to demonstrate key JavaScript concepts acquired in bootcamp. 
+
+## Essential Features
+
+- Loads data from an external source (API)
+- View a list of items
+- On user action can view details for that item
+
+## Technical Requirements
+
+- Pokémon API
+- CSS
+- JavaScript code that must be formatted according to ESLint rules.
+  - may be formatted via Prettier
+  - may be formatted manually
+- One complex UI pattern
+- Deployed by an accessible platform like GitHub pages
