@@ -49,6 +49,11 @@ function addListItem(pokemon) {
     });
 }
 
+// showDetails() displays pokemon details
+function showDetails(pokemon) {
+    console.log(pokemon);
+}
+
 // filterItems() allows user to search for pokemon by name
 function filterItems(pokemonList, query) {
     return pokemonList.filter((name) => name.toLowerCase().includes(query.toLowerCase()));
@@ -60,6 +65,7 @@ return {
     add: add,
     filterItems: filterItems,
     addListItem: addListItem,
+    showDetails: showDetails,
 }})();
 
 // prints pokemonList details with message for largest pokemon
