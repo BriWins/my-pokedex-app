@@ -17,3 +17,41 @@
     font-size: 16px;
     margin: 4px 2px;
 }
+
+
+/* Responsiveness across many various devices */
+
+/* Mobile Devices */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .container {
+        
+    }
+}
+
+/* Tablets, Ipads etc. */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .container {
+
+    }
+}
+
+/* Laptops */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .container {
+
+    }
+}
+
+/* Desktops */
+@media only screen and (min-width: 1025px) and (max-width:1200px) {
+    .container {
+
+    }
+}
+
+/* Extra large desktops, TV Screens etc. */
+@media only screen and (min-width: 1201px) {
+    .container {
+
+    }
+}
