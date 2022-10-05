@@ -43,6 +43,10 @@ function addListItem(pokemon) {
     button.classList.add("btn-pokemon-item");
     listItem.appendChild(button);
     pokemonItems.appendChild(listItem);
+
+    button.addEventListener("click", function (event) {
+        showDetails(pokemon);
+    });
 }
 
 // filterItems() allows user to search for pokemon by name
@@ -50,14 +54,13 @@ function filterItems(pokemonList, query) {
     return pokemonList.filter((name) => name.toLowerCase().includes(query.toLowerCase()));
 }
   
-// return invokes all functions with IIFE statement
+// return invokes all functions within the immediately invoked functional expression statement
 return {
     getAll: getAll,
     add: add,
     filterItems: filterItems,
     addListItem: addListItem,
-}
-})();
+}})();
 
 // prints pokemonList details with message for largest pokemon
 pokemonRepository.getAll().forEach(function(item) {
