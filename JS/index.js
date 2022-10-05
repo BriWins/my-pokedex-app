@@ -34,29 +34,34 @@ function add(pokemon) {
     }
 }
 
+//addListItem() display unordered list of pokemon items
+function addListItem(pokemon) {
+    let pokemonItems = document.querySelector("ul");
+    let listItem = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("btn-pokemon-item");
+    listItem.appendChild(button);
+    pokemonItems.appendChild(listItem);
+}
+
 // filterItems() allows user to search for pokemon by name
 function filterItems(pokemonList, query) {
     return pokemonList.filter((name) => name.toLowerCase().includes(query.toLowerCase()));
-  }
-
+}
+  
 // return invokes all functions with IIFE statement
 return {
     getAll: getAll,
     add: add,
     filterItems: filterItems,
+    addListItem: addListItem,
 }
 })();
 
 // prints pokemonList details with message for largest pokemon
 pokemonRepository.getAll().forEach(function(item) {
-    document.write( "<br />" + "Name: " + item.name + " " + "Height: " + item.height + " " + "meters" + " "); {
-       if (item.height < 0.3 ) {
-        document.write( " ~ AWW! that is one itty bitty Pokemon!");
-      }
-      else if (item.height > 1) {
-          document.write(" ~ WHOA! that is one big 'ole Pokemon!"); 
-        }
-    }
+    pokemonRepository.addListItem(item)
 });
 
 
