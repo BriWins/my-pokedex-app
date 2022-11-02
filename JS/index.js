@@ -34,9 +34,11 @@ function addListItem(pokemon) {
     });
 }
 
-// showDetails() displays pokemon details
+// showDetails() displays pokemon details upon user click
 function showDetails(pokemon) {
-    console.log(pokemon);
+    loadDetails(pokemon). then(function() {
+        console.log(pokemon); 
+    })
 }
 
 // filterItems() allows user to search for pokemon by name
@@ -60,6 +62,19 @@ function loadList() {
         console.error(e);
     })
 }
+
+// loadDetails() takes pokemon item as an argument to display its detailed data
+function loadDetails() {
+    let url = item.detailsUrl;
+    return fetch(url).then( function(response) {
+        return response.json();
+    }).then (function (details) {
+        item.imageUrl = details.sprites.front_default;
+        item.types = details.types
+    }).catch (function (e) {
+        console.error(e);
+    });
+}
   
 // return invokes all functions within the immediately invoked functional expression statement
 return {
@@ -69,6 +84,7 @@ return {
     addListItem: addListItem,
     showDetails: showDetails,
     loadList: loadList,
+    loadDetails: loadDetails,
 }})();
 
 // prints pokemonList details with message for largest pokemon
