@@ -5,6 +5,7 @@
     background-color: rgb(219, 255, 250);
 }
 
+/* Buttons */
 .btn-pokemon-item {
     padding: 16px 32px;
     margin-bottom: 10px;
@@ -16,6 +17,7 @@
     display:inline-block;
     font-size: 16px;
     margin: 4px 2px;
+    cursor: pointer;
 }
 
 

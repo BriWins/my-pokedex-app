@@ -2,23 +2,7 @@
 let pokemonRepository = (function() {
    
 //pokemonList holds pokemon array items
-let pokemonList = [
-    {name: "Bulbasaur", 
-    height: 0.7, 
-    weight: 6.9, 
-    eggGroup: ["Monster","Grass"], 
-    abilities: ["Chlorophyll", "Overgrow"]},
-    {name: "Ivysaur", 
-    height: 1, 
-    weight: 13, 
-    eggGroup: ["Monster","Grass"], 
-    abilities: ["Chlorophyll", "Overgrow"]},
-    {name: "Venusaur", 
-    height: 2, 
-    weight: 100, 
-    eggGroup: ["Monster","Grass"], 
-    abilities: ["Chlorophyll", "Overgrow"]}
-]
+let pokemonList = [];
 
 // getAll() returns list of pokemon items
 function getAll() {
