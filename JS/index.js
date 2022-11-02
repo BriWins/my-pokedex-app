@@ -3,6 +3,7 @@ let pokemonRepository = (function() {
    
 //pokemonList holds pokemon array items
 let pokemonList = [];
+let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
 // getAll() returns list of pokemon items
 function getAll() {
@@ -42,6 +43,23 @@ function showDetails(pokemon) {
 function filterItems(pokemonList, query) {
     return pokemonList.filter((name) => name.toLowerCase().includes(query.toLowerCase()));
 }
+
+// loadList() gets pokemon items directly from api
+function loadList() {
+    return fetch(apiUrl).then(function (response) {
+        return response.json();
+    }).then( function (json) {
+        json.results.forEach( function (item) {
+            let pokemon = {
+                name: item.name,
+                detailsUrl: item.url
+            };
+            add(pokemon);
+        });
+    }).catch( function(e) {
+        console.error(e);
+    })
+}
   
 // return invokes all functions within the immediately invoked functional expression statement
 return {
@@ -50,11 +68,14 @@ return {
     filterItems: filterItems,
     addListItem: addListItem,
     showDetails: showDetails,
+    loadList: loadList,
 }})();
 
 // prints pokemonList details with message for largest pokemon
-pokemonRepository.getAll().forEach(function(item) {
-    pokemonRepository.addListItem(item)
+pokemonRepository.loadList.then(function(){
+    pokemonRepository.getAll().forEach(function(item) {
+            pokemonRepository.addListItem(item)
+    });
 });
 
 
