@@ -12,10 +12,10 @@ function getAll() {
 
 // add() makes sure pokemon item is a real oject with appropriate object key properties
 function add(pokemon) {
-    if (typeof pokemon !== "object" && Object.keys(pokemon)) {
-        return "Error not a pokemon object!"
-    } else {
+    if (typeof pokemon === "object" && "name" || "detailsURL" in pokemon) {
         return pokemonList.push(pokemon);
+    } else {
+        console.log("not a pokemon object!");
     }
 }
 
@@ -88,7 +88,7 @@ return {
 }})();
 
 // prints pokemonList details with message for largest pokemon
-pokemonRepository.loadList.then(function(){
+pokemonRepository.loadList().then(function(){
     pokemonRepository.getAll().forEach(function(item) {
             pokemonRepository.addListItem(item)
     });
