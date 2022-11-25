@@ -117,6 +117,7 @@ function showModal( title, text ) {
 document.querySelector("#show-modal").addEventListener('click', () => { showModal("Modal Title", "This is the modal content");    
 });
 
+let dialogPromiseReject;
 // hideModal() removes the modal if user clicks close button
 function hideModal() {
     let modalContainer = document.querySelector("#modal-container");
@@ -129,7 +130,55 @@ function hideModal() {
             hideModal();
         }
     })
+
+    if ( dialogPromiseReject ) {
+        dialogPromiseReject();
+        dialogPromiseReject = null;
+    }
 }
+
+function showDialog(title, text) {
+    showModal(title, text);
+
+    //defined modal container here
+    let modalContainer = document.querySelector("#modal-container");
+
+    let modal = modalContainer.querySelector(".modal");
+
+    let confirmButton = document.createElement("button");
+    confirmButton.classList.add("modal-confirm");
+    confirmButton.innerText = "Confirm";
+
+    let cancelButton = document.createElement("button");
+    cancelButton.classList.add("modal-cancel");
+    cancelButton.innerText = "Cancel";
+
+    modal.appendChild(confirmButton);
+    modal.appendChild(cancelButton);
+
+    confirmButton.focus();
+
+    //return a promise that resolves when confirmed otherwise rejects
+    return new Promise((resolve, reject) => {
+        cancelButton.addEventListener("click", hideModal);
+        confirmButton.addEventListener("click", () => {
+            dialogPromiseReject = null;
+            hideModal();
+            resolve();
+        });
+
+        //This can be used to reject from other functions
+        dialogPromiseReject = reject;
+    });
+}
+
+document.querySelector("#show-dialog").addEventListener("click", () => {
+    showDialog("Confirm Action", "Are you sure you want to do this?").then(function() {
+        console.log("confirmed!");
+    }, () => {
+        console.log("not confirmed");
+    });
+});
   
 // return invokes all functions within the immediately invoked functional expression statement
 return {
@@ -142,6 +191,7 @@ return {
     loadDetails: loadDetails,
     hideModal: hideModal,
     showModal: showModal,
+    showDialog: showDialog,
 }})();
 
 // prints pokemonList details with message for largest pokemon
